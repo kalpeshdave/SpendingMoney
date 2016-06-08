@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<p>Bill Type : <%= @bill.bill_type%></p>
+<p>Bill Date : <%= @bill.date%></p>
+<p>Bill Amount : <%= @bill.amount%></p>
+
+<strong></h4>
+           <br>
+           <br>
+           <p>People Associated with this Bill:</p>
+           <br>
+
+<pre><table>
+           <th><%= "User :" %></th>
+           <th>                <%= "Amount he/she paid :" %></th>
+           <th>              <%= "Amount he/she supposed to :" %></th>
+           <th>              <%= "Individual Balance: " %></th>
+</table></pre>
+
+<pre><% @bill.bill_friends.each do |hisobj| %>
+           <table border:2px>
+           <td><%= "#{hisobj.user.name}" %></td>
+           <td>                    <%= "#{hisobj.contribution}" %></td>
+           <td>                                <%= "#{hisobj.supposetopay}" %></td>
+
+           <% if  hisobj.contribution.to_i - hisobj.supposetopay.to_i > 0 %>
+             <td>                       <%= " Gets #{hisobj.contribution.to_i - hisobj.supposetopay.to_i} Rupees " %>
+             <% elsif hisobj.contribution.to_i - hisobj.supposetopay.to_i < 0 %>
+               <td>                     <%= " pay #{hisobj.supposetopay.to_i - hisobj.contribution.to_i} Rupees " %>
+              <% else %>
+               <td>                     <%= "Clear" %></td>
+              <% end %>
+
+           </table>
+        <% end %></pre>
+     	<br>
+     	<br>
+
+
+
+<%= link_to 'Edit', edit_bill_path(@bill) %> |
+<%= link_to 'Back', bills_path %> |
+<%= link_to 'Add Contributions', new_bill_bill_friend_path(@bill) %>

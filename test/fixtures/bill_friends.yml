@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  bill: 
+  user: 
+  contribution: 1.5
+
+two:
+  bill: 
+  user: 
+  contribution: 1.5

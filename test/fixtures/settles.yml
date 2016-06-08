@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  payer: 1
+  payee: 
+  amount: 1.5
+  status: MyString
+
+two:
+  payer: 1
+  payee: 
+  amount: 1.5
+  status: MyString

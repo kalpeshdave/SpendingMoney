@@ -41,14 +41,15 @@ class BillFriendsController < ApplicationController
   # POST /bill_friends
   # POST /bill_friends.json
   def create
+    @bill = Bill.find params[:bill_id]
     @bill_friend = BillFriend.new(params[:bill_friend])
 
     respond_to do |format|
       if @bill_friend.save
-        format.html { redirect_to bill_path(@bill_friend.bill), notice: 'Bill friend was successfully created.' }
+        format.html { redirect_to bill_path(@bill), notice: 'Bill friend was successfully created.' }
         format.json { render json: @bill_friend, status: :created, location: @bill_friend }
       else
-        format.html { redirect_to new_bill_bill_friend_path(@bill_friend.bill) }
+        format.html { redirect_to new_bill_bill_friend_path(@bill) }
         format.json { render json: @bill_friend.errors, status: :unprocessable_entity }
       end
     end
@@ -57,14 +58,15 @@ class BillFriendsController < ApplicationController
   # PUT /bill_friends/1
   # PUT /bill_friends/1.json
   def update
+    @bill = Bill.find params[:bill_id]
     @bill_friend = BillFriend.find(params[:id])
 
     respond_to do |format|
       if @bill_friend.update_attributes(params[:bill_friend])
-        format.html { redirect_to @bill_friend, notice: 'Bill friend was successfully updated.' }
+        format.html { redirect_to bill_path(@bill), notice: 'Bill friend was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { redirect_to edit_bill_bill_friend_path(@bill, @bill_friend) }
         format.json { render json: @bill_friend.errors, status: :unprocessable_entity }
       end
     end
@@ -73,11 +75,12 @@ class BillFriendsController < ApplicationController
   # DELETE /bill_friends/1
   # DELETE /bill_friends/1.json
   def destroy
+    @bill = Bill.find params[:bill_id]
     @bill_friend = BillFriend.find(params[:id])
     @bill_friend.destroy
 
     respond_to do |format|
-      format.html { redirect_to bill_friends_url }
+      format.html { redirect_to bill_path(@bill) }
       format.json { head :no_content }
     end
   end

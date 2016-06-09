@@ -11,6 +11,11 @@ group :development do
   gem 'mysql2'
 end
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.4'
+  gem "factory_girl_rails", :require => false
+end
+
 
 # Gems used only for assets and not required
 # in production environments by default.

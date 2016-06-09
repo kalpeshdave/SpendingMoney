@@ -3,6 +3,6 @@ class Bill < ActiveRecord::Base
 
   has_many :bill_friends, dependent: :destroy
   belongs_to :user
-  validates_presence_of :date, :amount
+  validates :date, :amount, :presence => true
   validates_numericality_of :amount
 end

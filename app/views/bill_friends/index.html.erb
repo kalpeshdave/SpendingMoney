@@ -2,20 +2,18 @@
 
 <table>
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>User</th>
+    <th>Bill</th>
+    <th>Contrinution</th>
   </tr>
 
 <% @bill_friends.each do |bill_friend| %>
   <tr>
-    <td><%= link_to 'Show', bill_friend %></td>
-    <td><%= link_to 'Edit', edit_bill_friend_path(bill_friend) %></td>
-    <td><%= link_to 'Destroy', bill_friend, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= bill_friend.user_id %></td>
+    <td><%= bill_friend.bill_id %></td>
+    <td><%= bill_friend.contribution %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Bill friend', new_bill_friend_path %>
